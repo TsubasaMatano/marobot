@@ -86,12 +86,3 @@ module.exports = (robot) ->
 "
   )
   goHomeCronJob.start()
-
-  testCronJob = new cronJob('0 56 15 * * 1-5', () ->
-
-    say = "【定時のお知らせ】\r\n" + random ["ランダムcronてすとNo1", "ランダムcronてすとNo2", "ランダムcronてすとNo3"]
-    envelope = room: "#09_bot_test"
-    robot.send envelope, say
-    , null, true
-  )
-  testCronJob.start()
