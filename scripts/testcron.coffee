@@ -19,9 +19,9 @@ module.exports = (robot) ->
   )
   testCronJob.start()
 
-  testBCronJob = new cronJob('2 * * * * *', () =>
-    envelope = room: "#09_bot_test"
-    say = '定時退社の時間になりました。' + random ['おれおれ', 'オレオレ', 'エレエレ']
-    robot.send envelope, say
-  )
-  testBCronJob.start()
+#  testBCronJob = new cronJob('2 * * * * *', () =>
+#    envelope = room: "#09_bot_test"
+#    say = '定時退社の時間になりました。' + random ['おれおれ', 'オレオレ', 'エレエレ']
+#    robot.send envelope, say
+#  )
+#  testBCronJob.start()
