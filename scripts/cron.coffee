@@ -42,7 +42,29 @@ module.exports = (robot) ->
 
   lunchCronJob = new cronJob('0 30 12 * * 1-5', () =>
     envelope = room: "#01_general"
-    robot.send envelope, "
+    greeting = random ["
+　　　　　　　　,ト--ミ､、_:::::::::::::::::｀:"'':―┼――――l
+　　　　　　　 /ミミ三三ﾐ'ー‐-- ､、＿:::::::|:::::::::::::::::::::::j
+　　　　　　　 {ミミミ三三、　　 　 ､ｰ=､`'┴―――fミ',
+　　　　　　,..､ﾐﾐミミミ三ｼ　　. . . . `―' l ii l　(ヲ　　lミil
+　　　　　 //う{ﾐﾐミミf'"　　　_,,.,,_:.:.:.:..　 _j_　.:.:.:.　　lﾐﾘ
+　　　　　 l V　}ﾐﾐミミ　　　 ',ｨでiﾝﾐ、:.:.､__, -,ｨも=､',l:l′　　　　いただきますでおじゃる♪
+　　　　　 'i l ,ﾉヾミミ'　　　 ´￣｀ﾞ`ラ .:. 三 f"´￣｀' lj
+-、 　　　 ヽヽへ}ミﾐ　　　　 ｀二ﾆノ ,、 jl　',` ―''" ,l!
+　　ヽ、　　 ヽ二ﾉミ'　　/ / / / ,ィ'" 　 　 ﾄ、/ / /.,!
+、　　 ヽ　 , f-､､!'ミ　　　 　 　 ／ `^ヽ,＿ノi　　　 ,'
+　ヽ、　 ヾ　　　/i,ﾐ'　　 　 " ／　　 　　　、l　　　 /
+　　 ヽ　,‐ヽ__,ノ lN 　　 :: ／ ｲｴｴｪｪｪｪｴｲ, ,}　::,/
+、　　 ヾヽ__） ヽ ', ヽ　 　 { " |⌒'ｰ'‐'‐'‐',ﾘ l　 /
+　ヽ、 ,.-ヾ, ＼ ヽ'、 ヽ 　 l 　{,ゝ､‐r‐'ﾝ-i/ ,/ ,ｲ丶､、
+_　 　>､ _ﾉ､＼＼ヽヽ丶　丶 ヾ　Zェｪｪｼ'　ﾉ ,i'lヽ、　｀ヾー-- ､
+(｀'''ヽ'---'､＼＼＼.ヽ 丶、 ｀ ｀ ‐ -- ‐'"/ノ ,l　 ＼＿＿_ 　　ヽ
+￣¨　　　　 　 ＼＼＼＼　　　　　　　　　　　　　 ノ　　　　｀ヽ　　　
+　　　　　　　　　 ＼> .＼＼　　　　　　　　　　　（く￣ ヽ　　,　 |　　
+　　　　　　　　　　　　　　＼>　　　　　 (^ヾ｀'ｰ-ヽ､_￣ _ノ,--　ヽ
+　　　　　　　　　　　　　　　　　　 (￣｀ヽ ヽ､
+",
+"
 　　　　　　　　　　　 　/:::::;;-‐-､:::ヽ 　　　　　　　　　　　 _,,,,,,,_\r\n
 　 　　　　　　　　　　　 l::::::l　　_,,､-‐\"iiiiiilllllllllllliiiiiiiｰ-､__ゞ:::::::::::｀ヽ,\r\n
 　　　　　　　　　　　　　ヽ::｀／: : : : iiiiiilllll||llllliiiiii: : : : : : ヽｲ~`ヽ:::::::\r\n
@@ -63,7 +85,8 @@ module.exports = (robot) ->
 　一 '' \"´　　　　 　　 ',ヽ丶:.:.:ヽ、　⌒　　　　,r'\"　　　 /　/:.:.:.:.:.:.:ﾉ,ノ |　　　　　 ｀`丶、\r\n
 　　　　　　　　　　　　 ヽ丶丶､:.:.ゝ､ ＿＿_,. ｲ　　　　 /　/:.:..:.:.:.,ｨｼ′ |\r\n
 　　　　　　　　　　　　　 ｀丶､ ｀`\"二ﾕ、_,.,＿＿＿＿/__,/;: -‐ '\"　　／　\r\n
-"
+"]
+    robot.send envelope, greeting
   )
   lunchCronJob.start()
 
@@ -87,9 +110,11 @@ module.exports = (robot) ->
   )
   goHomeCronJob.start()
 
-  testCronJob = new cronJob('0 32 15 * * 1-5', () =>
+  testCronJob = new cronJob('0 42 15 * * 1-5', () ->
+
+    say = random ["ランダムcronてすとNo1""ランダムcronてすとNo2""ランダムcronてすとNo3"]
     envelope = room: "#09_bot_test"
-    say = random ["ランダムcronてすとNo1", "ランダムcronてすとNo2", "ランダムcronてすとNo3"]
     robot.send envelope, say
+    , null, true
   )
   testCronJob.start()
