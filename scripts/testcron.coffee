@@ -15,24 +15,25 @@
 #cheerio = require 'cheerio'
 
 module.exports = (robot) ->
-  robot.helper =
-    url: () ->
-      server = robot.server.address()
-      process.env.HEROKU_URL ? "https://marobot.herokuapp.com/"
+#  robot.helper =
+#    url: () ->
+#      server = robot.server.address()
+#      process.env.HEROKU_URL ? "https://marobot.herokuapp.com/"
 #      process.env.HEROKU_URL ? "http://#{server.address}:#{server.port}"
 
-  robot.hear /testtest/i, (msg) ->
+  robot.hear /testtesttest/i, (msg) ->
+    msg.send "@maro_bot: img ラーメン"
 #    url = 'http://cdn.memegenerator.net/instances/400x/37661228.jpg'
 #    request filePath, (err, response, body) ->
 #      $ = cheerio.load body
 
 
-    testUrl = 'http://impression-seikotsu.com/blog/wp-content/uploads/2015/01/%E5%A4%A7%E5%AF%92.jpg'
-    msg.send testUrl
+#    testUrl = 'http://impression-seikotsu.com/blog/wp-content/uploads/2015/01/%E5%A4%A7%E5%AF%92.jpg'
+#    msg.send testUrl
 
-    filePath = 'files/images/maro/maro_soredakega.jpg'
+#    filePath = 'files/images/maro/maro_soredakega.jpg'
 #    encodeUrl = encodeURIComponent(filePath)
-    msg.send "#{robot.helper.url()}/#{filePath}"
+#    msg.send "#{robot.helper.url()}/#{filePath}"
 #    msg.send filePath
 
 #    data = fs.readFileSync filePath, 'utf8'
