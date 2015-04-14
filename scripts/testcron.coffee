@@ -22,7 +22,8 @@ module.exports = (robot) ->
 #      $ = cheerio.load body
 
 #    filePath = 'files/images/maro/maro_soredakega.jpg'
-    url = encodeURIComponent('http://cdn.memegenerator.net/instances/400x/37661228.jpg')
+#    url = encodeURIComponent('http://cdn.memegenerator.net/instances/400x/37661228.jpg')
+    url = 'http://cdn.memegenerator.net/instances/400x/37661228.jpg'
     msg.send "画像テスト: #{url}"
 #    msg.send filePath
 
