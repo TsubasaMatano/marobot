@@ -31,8 +31,8 @@ module.exports = (robot) ->
     msg.send testUrl
 
     filePath = 'files/images/maro/maro_soredakega.jpg'
-    encodeUrl = encodeURIComponent(filePath)
-    msg.send "#{robot.helper.url()}hubot/#{encodeUrl}"
+#    encodeUrl = encodeURIComponent(filePath)
+    msg.send "#{robot.helper.url()}/#{filePath}"
 #    msg.send filePath
 
 #    data = fs.readFileSync filePath, 'utf8'
