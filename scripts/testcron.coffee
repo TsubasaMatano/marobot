@@ -10,13 +10,22 @@
 
 #cronJob = require('cron').CronJob
 #random = require('hubot').Response::random
-fs = require 'fs'
+#fs = require 'fs'
+#request = require 'request'
+#cheerio = require 'cheerio'
 
 module.exports = (robot) ->
 
   robot.hear /testtest/i, (msg) ->
-    filePath = 'files/images/maro/maro_soredakega.jpg'
-    msg.send filePath
+#    url = 'http://cdn.memegenerator.net/instances/400x/37661228.jpg'
+#    request filePath, (err, response, body) ->
+#      $ = cheerio.load body
+
+#    filePath = 'files/images/maro/maro_soredakega.jpg'
+    url = encodeURIComponent('files/images/maro/maro_soredakega.jpg')
+    msg.send "画像テスト: #{url}"
+#    msg.send filePath
+
 #    data = fs.readFileSync filePath, 'utf8'
 #    console.log data
 
