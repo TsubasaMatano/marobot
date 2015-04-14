@@ -10,8 +10,17 @@
 
 #cronJob = require('cron').CronJob
 #random = require('hubot').Response::random
+fs = require 'fs'
 
-#module.exports = (robot) ->
+module.exports = (robot) ->
+
+  robot.hear /testtest/i, (msg) ->
+    filePath = 'files/images/maro/maro_soredakega.jpg'
+    msg.send filePath
+#    data = fs.readFileSync filePath, 'utf8'
+#    console.log data
+
+#    robot.send check
 #
 #  testCronJob = new cronJob('0 20 16 * * 1-5', () =>
 #    envelope = room: "#09_bot_test"
