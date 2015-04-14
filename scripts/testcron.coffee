@@ -24,7 +24,7 @@ module.exports = (robot) ->
 #    filePath = 'files/images/maro/maro_soredakega.jpg'
 #    url = encodeURIComponent('http://cdn.memegenerator.net/instances/400x/37661228.jpg')
     url = 'http://impression-seikotsu.com/blog/wp-content/uploads/2015/01/%E5%A4%A7%E5%AF%92.jpg'
-    msg.send #{encodedUrl}
+    msg.send url
 #    msg.send filePath
 
 #    data = fs.readFileSync filePath, 'utf8'
