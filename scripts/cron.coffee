@@ -14,10 +14,11 @@ random = require('hubot').Response::random
 module.exports = (robot) ->
 
 #  morningCronJob = new cronJob('0 0 10 * * 1-5', () =>
-  morningCronJob = new cronJob('0 22 20 * * 1-5', () =>
+  morningCronJob = new cronJob('0 27 20 * * 1-5', () =>
     envelope = room: "#01_general"
-    greeting = "【気持ちの良い朝じゃのぅ。今日もコレを見て頑張るのじゃ】"
-    + random ["http://pic.prepics-cdn.com/momo19990829/5039215.jpeg",
+    greeting = "【気持ちの良い朝じゃのぅ。今日もコレを見て頑張るのじゃ】" + 
+      random ["http://pic.prepics-cdn.com/momo19990829/5039215.jpeg",
+      "http://pic.prepics-cdn.com/momo19990829/5039215.jpeg",
       "http://pic.prepics-cdn.com/oregano/7563077.jpeg",
       "http://pic.prepics-cdn.com/mms01260922/8974796.jpeg",
       "http://blogimg.goo.ne.jp/user_image/11/81/79fe37fb523ac0a2637e0cf71bd6f08f.jpg",
