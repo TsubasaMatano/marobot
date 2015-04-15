@@ -22,6 +22,8 @@ module.exports = (robot) ->
 #      process.env.HEROKU_URL ? "http://#{server.address}:#{server.port}"
 
   robot.hear /testtesttest/i, (msg) ->
+#        imageMe msg, msg.match[2], true, (url) ->
+#	      msg.send url
     msg.send "@maro_bot: img ラーメン"
 #    url = 'http://cdn.memegenerator.net/instances/400x/37661228.jpg'
 #    request filePath, (err, response, body) ->
