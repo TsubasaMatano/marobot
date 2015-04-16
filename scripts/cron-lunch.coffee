@@ -8,31 +8,41 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
-#cronJob = require('cron').CronJob
-#random = require('hubot').Response::random
-#fs = require 'fs'
-#request = require 'request'
-#cheerio = require 'cheerio'
+cronJob = require('cron').CronJob
+random = require('hubot').Response::random
 
 module.exports = (robot) ->
-#  robot.respond /(image|img)( me)? (.*)/i, (msg) ->
-  robot.hear /testtesttest/i, (msg) ->
-    imageMe msg, "���[���� �b���", (url) ->
-      msg.send url
+
+  lunchCronJob = new cronJob('0 0 15 * * 1-5', () =>
+    envelope = room: "#01_general"
+
+    maroMsg = "【今日のお昼はこれで決まりじゃ！！】"
+    robot.send envelope, maroMsg
+
+    keyword = random ["ラーメン",
+      "焼肉",
+      "パスタ",
+      "寿司",
+      "定食",
+      "ケーキ"] + " 恵比寿"
+
+#    imageMe msg, keyword, (url) ->
+    imageMe robot, keyword, (url) ->
+#      msg.send url
+      robot.send envelope, url
+  )
+  lunchCronJob.start()
 
 imageMe = (msg, query, cb) ->
-#  cb = animated if typeof animated == 'function'
-#  cb = faces if typeof faces == 'function'
   q = v: '1.0', rsz: '8', q: query, safe: 'active'
-#  q.imgtype = 'animated' if typeof animated is 'boolean' and animated is true
-#  q.imgtype = 'face' if typeof faces is 'boolean' and faces is true
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(q)
     .get() (err, res, body) ->
       images = JSON.parse(body)
       images = images.responseData?.results
       if images?.length > 0
-        image = msg.random images
+#        image = msg.random images
+        image = random images
         cb ensureImageExtension image.unescapedUrl
 
 ensureImageExtension = (url) ->
@@ -41,3 +51,4 @@ ensureImageExtension = (url) ->
     url
   else
     "#{url}#.png"
+
