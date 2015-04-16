@@ -13,18 +13,17 @@ random = require('hubot').Response::random
 
 module.exports = (robot) ->
 
-  lunchCronJob = new cronJob('0 0 15 * * 1-5', () =>
+  lunchCronJob = new cronJob('0 0 12 * * 1-5', () =>
+#  lunchCronJob = new cronJob('2 * * * * *', () =>
     envelope = room: "#01_general"
 
     maroMsg = "【今日のお昼はこれで決まりじゃ！！】"
     robot.send envelope, maroMsg
 
-    keyword = random ["ラーメン",
-      "焼肉",
-      "パスタ",
-      "寿司",
-      "定食",
-      "ケーキ"] + " 恵比寿"
+    keyword = random ["ラーメン 恵比寿",
+      "肉 恵比寿",
+      "カレー 恵比寿",
+      "刺身 恵比寿"]
 
 #    imageMe msg, keyword, (url) ->
     imageMe robot, keyword, (url) ->

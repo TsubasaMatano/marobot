@@ -14,30 +14,25 @@
 #request = require 'request'
 #cheerio = require 'cheerio'
 
-module.exports = (robot) ->
+#module.exports = (robot) ->
 #  robot.respond /(image|img)( me)? (.*)/i, (msg) ->
-  robot.hear /testtesttest/i, (msg) ->
-    imageMe msg, "ƒ‰[ƒƒ“ Œb”äŽõ", (url) ->
-      msg.send url
+#  robot.hear /testtesttest/i, (msg) ->
 
-imageMe = (msg, query, cb) ->
-#  cb = animated if typeof animated == 'function'
-#  cb = faces if typeof faces == 'function'
-  q = v: '1.0', rsz: '8', q: query, safe: 'active'
-#  q.imgtype = 'animated' if typeof animated is 'boolean' and animated is true
-#  q.imgtype = 'face' if typeof faces is 'boolean' and faces is true
-  msg.http('http://ajax.googleapis.com/ajax/services/search/images')
-    .query(q)
-    .get() (err, res, body) ->
-      images = JSON.parse(body)
-      images = images.responseData?.results
-      if images?.length > 0
-        image = msg.random images
-        cb ensureImageExtension image.unescapedUrl
-
-ensureImageExtension = (url) ->
-  ext = url.split('.').pop()
-  if /(png|jpe?g|gif)/i.test(ext)
-    url
-  else
-    "#{url}#.png"
+module.exports = (robot) ->   
+  robot.hear /(.*)‚Ì“V‹C‹³‚¦‚Ä/i, (msg) ->
+   switch msg.match[1]
+      when '¡“ú'
+        day = 0
+      when '–¾“ú'
+        day = 1
+      when '–¾Œã“ú'
+        day = 2
+      else
+        day = 3
+        break
+    request = msg.http('http://weather.livedoor.com/forecast/webservice/json/v1?city=270000')
+    .get()
+    request (err, res, body) ->
+      json = JSON.parse body
+      if day == 3 then forecast = '‚í‚©‚ç‚ñ‚·' else forecast = json['forecasts'][day]['telop']
+      msg.reply forecast
