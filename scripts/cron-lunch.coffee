@@ -22,8 +22,8 @@ module.exports = (robot) ->
 
     keyword = random ["ラーメン 恵比寿",
       "肉 恵比寿",
-      "カレー 恵比寿",
-      "刺身 恵比寿"]
+      "刺身 恵比寿",
+      "ランチ 高級 恵比寿"]
 
 #    imageMe msg, keyword, (url) ->
     imageMe robot, keyword, (url) ->
@@ -43,6 +43,10 @@ imageMe = (msg, query, cb) ->
 #        image = msg.random images
         image = random images
         cb ensureImageExtension image.unescapedUrl
+      else
+        cb = random ["http://blog-imgs-46.fc2.com/i/c/h/ichii445/jyo10.jpg",
+          "http://climbing-search.info/image/a0006_002266_m.jpg",
+          "http://gurutabi.gnavi.co.jp/upload_img/gourmet/z/4/jo/jojoenyakinikubento_p_1.jpg"]
 
 ensureImageExtension = (url) ->
   ext = url.split('.').pop()
