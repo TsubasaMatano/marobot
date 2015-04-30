@@ -19,7 +19,7 @@
 HTMLParser = require "htmlparser"
 
 module.exports = (robot) ->
-  robot.respond /(wiki)? (.*)/i, (msg) ->
+  robot.respond /wiki (.*)/i, (msg) ->
     targetWord = msg.match[2]
 
     targetUrl = "http://ja.wikipedia.org/w/api.php?action=query&format=json&titles=" +
@@ -28,7 +28,7 @@ module.exports = (robot) ->
     robot.http(targetUrl)
 #      .header('User-Agent', 'Hubot Wikipedia Script')
       .get() (err, res, body) ->
-        msg.send "処理が失敗したでおじゃる（涙" if err
+        msg.send "処理が失敗したでおじゃる（泣" if err
 
         parseBody = JSON.parse body
 #        console.log parseBody
@@ -36,13 +36,13 @@ module.exports = (robot) ->
         contentFlg = 0
         for key, value of parseBody.query.pages
           if key == '-1'
-            msg.send "記事がないでおじゃる（怒"
+            msg.send "ページが見つからないでおじゃる！（怒"
           else
             contentFlg = 1
             msg.send parseBody.query.pages[key].extract
 
 #        msg.send res.statusCode
         if contentFlg == 1
-          msg.send "詳しくは以下を参照するが良い"
+          msg.send "詳しくは以下を参照するが良い。"
           msg.send "https://ja.wikipedia.org/wiki/#{encodeURIComponent(targetWord)}"
 
