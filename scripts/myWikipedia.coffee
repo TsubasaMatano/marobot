@@ -22,16 +22,24 @@ module.exports = (robot) ->
   robot.respond /(wiki) (.*)/i, (msg) ->
     targetWord = msg.match[2]
 
-    targetUrl = "http://ja.wikipedia.org/w/api.php?action=query&format=json&titles=" +
-      targetWord + "&prop=extracts&redirects=1&exchars=300&explaintext=1"
+    targetUrl = "https://ja.wikipedia.org/w/api.php?action=query&format=json&titles=" +
+      targetWord + "&prop=extracts&exchars=300&explaintext=1"
+
+#    targetUrl = "http://wikipedia.simpleapi.net/api?keyword=スペランカー&output=json"
+    console.log targetUrl
 
     robot.http(targetUrl)
-#      .header('User-Agent', 'Hubot Wikipedia Script')
       .get() (err, res, body) ->
         msg.send "処理が失敗したでおじゃる（泣" if err
 
+        unless body?
+          console.log "bodyが空っぽです"
+
+        console.log "bodyの中身出します。"
+        console.log body
+
         parseBody = JSON.parse body
-#        console.log parseBody
+        console.log parseBody
 
         contentFlg = 0
         for key, value of parseBody.query.pages
@@ -41,8 +49,6 @@ module.exports = (robot) ->
             contentFlg = 1
             msg.send parseBody.query.pages[key].extract
 
-#        msg.send res.statusCode
         if contentFlg == 1
           msg.send "詳しくは以下を参照するが良い。"
           msg.send "https://ja.wikipedia.org/wiki/#{encodeURIComponent(targetWord)}"
-
