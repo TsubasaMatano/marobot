@@ -18,7 +18,7 @@ module.exports = (robot) ->
 #  lunchCronJob = new cronJob('0 47 21 * * 1-5', () =>
 
     envelope = room: "#01_general"
-    greeting = "y‚¨Œö‰Æ‚Ìƒ‰ƒ“ƒ`‚Í‚â‚Á‚Ï‚è–Ë‚¶‚á‚Èz"
+    greeting = "ã€ãŠå…¬å®¶ã®ãƒ©ãƒ³ãƒã¯ã‚„ã£ã±ã‚Šéººã˜ã‚ƒãªï¼ã€‘"
     robot.send envelope, greeting
 
     apiHost = 'http://api.gnavi.co.jp/RestSearchAPI/20150630/?'  
@@ -38,10 +38,10 @@ module.exports = (robot) ->
 
       getNumber = Math.floor(Math.random() * recTotal - 1)
 
-      robot.send envelope, "#{recTotal}"
-      robot.send envelope, "#{getNumber}"
+#      robot.send envelope, "#{recTotal}"
+#      robot.send envelope, "#{getNumber}"
       robot.send envelope, json.rest[getNumber].url
       robot.send envelope, json.rest[getNumber].image_url.shop_image1
-      robot.send envelope, json.rest[getNumber].image_url.shop_image2
+#      robot.send envelope, json.rest[getNumber].image_url.shop_image2
   )
   lunchCronJob.start()
