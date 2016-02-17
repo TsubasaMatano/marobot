@@ -15,7 +15,7 @@ apiKeyId = '0ca4462b9755b31b2370ea002a5c0bbc'
 
 module.exports = (robot) ->
 #  lunchCronJob = new cronJob('0 0 12 * * 1-5', () =>
-  lunchCronJob = new cronJob('0 44 21 * * 1-5', () =>
+  lunchCronJob = new cronJob('0 47 21 * * 1-5', () =>
 
     envelope = room: "#01_general"
     greeting = "y‚¨Œö‰Æ‚Ìƒ‰ƒ“ƒ`‚Í‚â‚Á‚Ï‚è–Ë‚¶‚á‚Èz"
