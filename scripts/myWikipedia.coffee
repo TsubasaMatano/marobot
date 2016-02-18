@@ -25,21 +25,11 @@ module.exports = (robot) ->
     targetUrl = "https://ja.wikipedia.org/w/api.php?action=query&format=json&titles=" +
       targetWord + "&prop=extracts&exchars=300&explaintext=1"
 
-#    targetUrl = "http://wikipedia.simpleapi.net/api?keyword=スペランカー&output=json"
-    console.log targetUrl
-
     robot.http(targetUrl)
       .get() (err, res, body) ->
         msg.send "処理が失敗したでおじゃる（泣" if err
 
-        unless body?
-          console.log "bodyが空っぽです"
-
-        console.log "bodyの中身出します。"
-        console.log body
-
         parseBody = JSON.parse body
-        console.log parseBody
 
         contentFlg = 0
         for key, value of parseBody.query.pages

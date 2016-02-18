@@ -30,3 +30,7 @@
 #      outLine = json['title'] + "\r\n" + json['description']['text']
 #      msg.send outLine
 
+#    keyword = random ["RSFST08008",
+#                      "RSFST05001",
+#                      "RSFST03003",
+#                      ""]

@@ -14,15 +14,15 @@ random = require('hubot').Response::random
 apiKeyId = '0ca4462b9755b31b2370ea002a5c0bbc'
 
 module.exports = (robot) ->
-  lunchCronJob = new cronJob('0 0 12 * * 1,3,5', () =>
-#  lunchCronJob = new cronJob('20 * * * * 1-5', () =>
+  lunchMeatCronJob = new cronJob('0 0 12 * * 2', () =>
+#  lunchMeatCronJob = new cronJob('0 * * * * 1-5', () =>
 
     envelope = room: "#01_general"
-    greeting = "【お公家のランチはやっぱり麺じゃな！】"
+    greeting = "【火曜のお公家は Love Meat】"
     robot.send envelope, greeting
 
     apiHost = 'http://api.gnavi.co.jp/RestSearchAPI/20150630/?'  
-    queryParam = '&areacode_m=AREAM2178&category_s=RSFST08008&format=json&hit_per_page=100' 
+    queryParam = '&areacode_m=AREAM2178&category_s=RSFST05001&format=json&hit_per_page=100' 
 
     request = robot.http("#{apiHost}keyid=#{apiKeyId}#{queryParam}").get()
     request (err, res, body) ->
@@ -34,8 +34,10 @@ module.exports = (robot) ->
 
       getNumber = Math.floor(Math.random() * recTotal - 1)
 
+#      robot.send envelope, "#{recTotal}"
+#      robot.send envelope, "#{getNumber}"
       robot.send envelope, json.rest[getNumber].url
 #      robot.send envelope, json.rest[getNumber].image_url.shop_image1
 #      robot.send envelope, json.rest[getNumber].image_url.shop_image2
   )
-  lunchCronJob.start()
+  lunchMeatCronJob.start()
