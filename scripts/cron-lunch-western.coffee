@@ -11,7 +11,7 @@
 cronJob = require('cron').CronJob
 random = require('hubot').Response::random
 
-apiKeyId = '0ca4462b9755b31b2370ea002a5c0bbc'
+apiKeyId = process.env.GNABI_API_KEY
 
 module.exports = (robot) ->
   lunchWesternCronJob = new cronJob('0 0 12 * * 4', () =>

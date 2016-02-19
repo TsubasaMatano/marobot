@@ -26,6 +26,39 @@
 #      msg.send json.results[0].text if json.results.length > 0
 
 module.exports = (robot) ->
+  ERR_MSG = 'docomo 雑談対話APIの呼出に失敗しました。'
+  API_KEY = process.env.DOCOMO_API_KEY
 
-  robot.hear /あんぶっしゅ$/i, (msg) ->
-    appendAmbush(robot.brain.data.ambushes, tsubasa.matano, msg.message.user, "オレオレ")
+  status = { place: '東京' }
+
+  robot.respond /(.+)$/i, (msg) ->
+    unless API_KEY?
+      return
+
+    #既存のコマンドは反応しないように対処
+    cmds = []
+    for help in robot.helpCommands()
+      cmd = help.split(' ')[1]
+      cmds.push(cmd) if cmds.indexOf(cmd) is -1
+
+    cmd = msg.match[1].split(' ')[0]
+    unless cmds.indexOf(cmd) is -1
+      return
+    status.nickname = msg.envelope.user.name
+    status.utt = msg.match[1]
+    now = new Date().getTime()
+    if now - status.time > 3 * 60 * 1000
+      status.context = ''
+      status.mode = ''
+    msg
+      .http('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue')
+      .query(APIKEY: API_KEY)
+      .header('Content-Type', 'application/json')
+      .post(JSON.stringify(status)) (err, res, body) ->
+        if err? or res.statusCode isnt 200
+          return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
+        msg.reply(JSON.parse(body).utt)
+        status.time = now
+        status.context = JSON.parse(body).context
+        status.mode = JSON.parse(body).mode
+
