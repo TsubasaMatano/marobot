@@ -17,7 +17,7 @@ module.exports = (robot) ->
   lunchMeatCronJob = new cronJob('0 0 12 * * 2', () =>
 #  lunchMeatCronJob = new cronJob('0 * * * * 1-5', () =>
 
-    envelope = room: "#01_general"
+    envelope = room: "#01_井戸端会議"
     greeting = "【火曜のお公家は Love Meat】"
     robot.send envelope, greeting
 

@@ -9,7 +9,7 @@
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 cronJob = require('cron').CronJob
-random = require('hubot').Response::random
+random = require('hubot').Response::randome
 
 apiKeyId = process.env.GNABI_API_KEY
 
@@ -17,7 +17,7 @@ module.exports = (robot) ->
   lunchWesternCronJob = new cronJob('0 0 12 * * 4', () =>
 #  lunchWesternCronJob = new cronJob('40 * * * * 1-5', () =>
 
-    envelope = room: "#01_general"
+    envelope = room: "#01_井戸端会議"
     greeting = "【洋食も嗜む公家カッコイイ的な】"
     robot.send envelope, greeting
 

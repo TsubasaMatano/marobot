@@ -14,7 +14,7 @@ random = require('hubot').Response::random
 module.exports = (robot) ->
 
   morningCronJob = new cronJob('0 0 10 * * 1-5', () =>
-    envelope = room: "#01_general"
+    envelope = room: "#01_井戸端会議"
     greeting = "【麻呂のお天気予報でおじゃる】" 
     robot.send envelope, greeting 
 
